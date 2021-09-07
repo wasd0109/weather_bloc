@@ -76,10 +76,7 @@ class WeatherScreen extends StatelessWidget {
           Expanded(
             child: Container(
               padding: EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20.0),
-                color: Colors.grey[200],
-              ),
+              decoration: kContainerStyle,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
