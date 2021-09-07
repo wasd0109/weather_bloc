@@ -37,6 +37,7 @@ dependencies:
   intl: ^0.17.0
   google_fonts: ^2.1.0
   basic_utils: ^3.5.0
+  smooth_page_indicator: ^1.0.0+2
 
 dev_dependencies:
   flutter_test:

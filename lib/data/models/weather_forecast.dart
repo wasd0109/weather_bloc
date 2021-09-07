@@ -1,5 +1,4 @@
 import 'package:bloc_weather/data/models/weather.dart';
-import 'package:flutter/material.dart';
 
 class WeatherForecast extends Weather {
   // temp from Weather used as minTemp
