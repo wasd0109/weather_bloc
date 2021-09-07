@@ -16,89 +16,93 @@ class _ForecastScreenState extends State<ForecastScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-          child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "This Week",
-            style: kSubTitleStyle,
-          ),
-          SizedBox(height: 20),
-          BlocBuilder<WeatherCubit, WeatherState>(
-            builder: (context, state) {
-              if (state is WeatherLoading) return PlatformSpecificSpinner();
-              if (state is WeatherLoaded)
-                return Expanded(
+      body: SafeArea(child: BlocBuilder<WeatherCubit, WeatherState>(
+        builder: (context, state) {
+          if (state is WeatherLoading) return PlatformSpecificSpinner();
+          if (state is WeatherLoaded)
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "This Week",
+                  style: kSubTitleStyle,
+                ),
+                SizedBox(height: 20),
+                Expanded(
                   child: ListView.builder(
                     physics: NeverScrollableScrollPhysics(),
                     itemCount: state.dailyWeather.length,
                     itemBuilder: (context, i) {
-                      return Column(
-                        children: [
-                          Row(
-                            children: [
-                              Expanded(
-                                flex: 1,
-                                child: Text(
-                                  DateFormat.E()
-                                      .format(state.dailyWeather[i].time)
-                                      .toUpperCase(),
-                                  style: TextStyle(
-                                    color: kSecondaryTextColor,
-                                    fontSize: 16,
+                      return Container(
+                        padding: EdgeInsets.symmetric(vertical: 5),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Text(
+                                DateFormat.E()
+                                    .format(state.dailyWeather[i].time)
+                                    .toUpperCase(),
+                                style: TextStyle(
+                                  color: kSecondaryTextColor,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "${state.dailyWeather[i].maxTemp.toStringAsFixed(1)}°",
+                                    style: TextStyle(fontSize: 18),
                                   ),
-                                ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    "${state.dailyWeather[i].temp.toStringAsFixed(1)}°",
+                                    style: TextStyle(
+                                        color: kSecondaryTextColor,
+                                        fontSize: 16),
+                                  ),
+                                ],
                               ),
-                              Expanded(
-                                flex: 1,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      "${state.dailyWeather[i].maxTemp.toStringAsFixed(1)}°",
-                                      style: TextStyle(fontSize: 18),
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text(
-                                      "${state.dailyWeather[i].temp.toStringAsFixed(1)}°",
-                                      style: TextStyle(
-                                          color: kSecondaryTextColor,
-                                          fontSize: 16),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Expanded(
-                                flex: 2,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset(
+                            ),
+                            Expanded(
+                              flex: 2,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    width: 30,
+                                  ),
+                                  CircleAvatar(
+                                    backgroundColor: Colors.grey,
+                                    child: Image.asset(
                                       "images/${state.dailyWeather[i].icon}@4x.png",
                                       width: 40,
                                     ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text(state.dailyWeather[i].condition),
-                                  ],
-                                ),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(state.dailyWeather[i].condition),
+                                ],
                               ),
-                            ],
-                          ),
-                        ],
+                            ),
+                          ],
+                        ),
                       );
                     },
                   ),
-                );
-              return Text("Error");
-            },
-          ),
-        ],
+                ),
+              ],
+            );
+          return Text("Error");
+        },
       )),
     );
   }

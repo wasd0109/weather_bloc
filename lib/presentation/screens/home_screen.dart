@@ -1,15 +1,12 @@
 import 'package:bloc_weather/cubit/location_cubit.dart';
 import 'package:bloc_weather/cubit/weather_cubit.dart';
-import 'package:bloc_weather/presentation/components/current_weather_tile.dart';
 import 'package:bloc_weather/presentation/components/platform_specific_spinner.dart';
 import 'package:bloc_weather/presentation/screens/forecast_screen.dart';
 import 'package:bloc_weather/presentation/screens/search_screen.dart';
 import 'package:bloc_weather/presentation/screens/weather_screen.dart';
-import 'package:bloc_weather/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -50,7 +47,6 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _controller.dispose();
     _animationController.dispose();
     super.dispose();

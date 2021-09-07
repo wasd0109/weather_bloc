@@ -1,6 +1,7 @@
 import 'package:bloc_weather/cubit/weather_cubit.dart';
 import 'package:bloc_weather/data/models/weather.dart';
 import 'package:bloc_weather/presentation/components/hourly_forecast_block.dart';
+import 'package:bloc_weather/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -117,7 +118,7 @@ class WeatherScreen extends StatelessWidget {
                             height: 5,
                           ),
                           Text(
-                            "${currentWeather.visibilty.toString()} km",
+                            "${Utils.doubleToStringForDisplay(currentWeather.visibilty)} km",
                             style: TextStyle(fontSize: 25),
                           )
                         ],
