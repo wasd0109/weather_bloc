@@ -10,6 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -58,14 +59,9 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          padding: EdgeInsets.symmetric(
-            horizontal: 20,
-            vertical: 8,
-          ),
-          width: double.infinity,
-          child: MultiBlocListener(
+      body: Stack(
+        children: [
+          MultiBlocListener(
             listeners: [
               BlocListener<LocationCubit, LocationState>(
                 listener: (context, state) {
@@ -87,62 +83,46 @@ class _HomeScreenState extends State<HomeScreen>
                     ),
                   );
                 if (state is WeatherLoaded)
-                  return Column(
+                  return Stack(
                     children: [
-                      Visibility(
-                        visible: showScreenHint,
-                        child: Opacity(
-                          opacity: 1.0 - animation.value,
-                          child: Column(
+                      Positioned(
+                        right: 8.0,
+                        top: 0,
+                        bottom: 0,
+                        child: Center(
+                          child: SmoothPageIndicator(
+                              controller: _controller,
+                              count: 3,
+                              axisDirection: Axis.vertical,
+                              effect: ExpandingDotsEffect(
+                                  dotColor: Colors.grey.shade300,
+                                  activeDotColor: Colors.grey.shade400,
+                                  dotHeight: 10.0)),
+                        ),
+                      ),
+                      Container(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                        child: SafeArea(
+                          child: PageView(
+                            onPageChanged: (index) {
+                              if (index == 1)
+                                WidgetsBinding
+                                    .instance?.focusManager.primaryFocus
+                                    ?.unfocus();
+                            },
+                            scrollDirection: Axis.vertical,
+                            controller: _controller,
                             children: [
-                              Icon(
-                                Icons.expand_less,
-                                color: kSecondaryTextColor,
+                              SearchScreen(),
+                              WeatherScreen(
+                                currentWeather: state.currentWeather,
                               ),
-                              Text(
-                                "Search",
-                                style: TextStyle(color: kSecondaryTextColor),
-                              ),
+                              ForecastScreen(),
                             ],
                           ),
                         ),
                       ),
-                      Expanded(
-                        child: PageView(
-                          onPageChanged: (index) {
-                            if (index == 1)
-                              WidgetsBinding.instance?.focusManager.primaryFocus
-                                  ?.unfocus();
-                          },
-                          scrollDirection: Axis.vertical,
-                          controller: _controller,
-                          children: [
-                            SearchScreen(),
-                            WeatherScreen(
-                              currentWeather: state.currentWeather,
-                            ),
-                            ForecastScreen(),
-                          ],
-                        ),
-                      ),
-                      Visibility(
-                        visible: showScreenHint,
-                        child: Opacity(
-                          opacity: 1.0 - animation.value,
-                          child: Column(
-                            children: [
-                              Icon(
-                                Icons.expand_more,
-                                color: kSecondaryTextColor,
-                              ),
-                              Text(
-                                "Forecast",
-                                style: TextStyle(color: kSecondaryTextColor),
-                              ),
-                            ],
-                          ),
-                        ),
-                      )
                     ],
                   );
                 if (state is WeatherError)
@@ -152,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen>
               },
             ),
           ),
-        ),
+        ],
       ),
     );
   }

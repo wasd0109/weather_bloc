@@ -25,7 +25,19 @@ class _ForecastScreenState extends State<ForecastScreen> {
           BlocBuilder<WeatherCubit, WeatherState>(builder: (context, state) {
             if (state is WeatherLoading) return PlatformSpecificSpinner();
             if (state is WeatherLoaded)
-              return Text(state.dailyWeather[0].condition);
+              return ListView.builder(
+                  itemCount: state.dailyWeather.length,
+                  itemBuilder: (context, index) {
+                    return Row(
+                      children: [
+                        Text("Wed"),
+                        Text("24"),
+                        Text("18"),
+                        Image.asset("images/01d@4x.png"),
+                        Text("Rainy")
+                      ],
+                    );
+                  });
             return Text("Error");
           })
         ],
