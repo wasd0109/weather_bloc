@@ -88,13 +88,15 @@ class _HomeScreenState extends State<HomeScreen>
                         bottom: 0,
                         child: Center(
                           child: SmoothPageIndicator(
-                              controller: _controller,
-                              count: 3,
-                              axisDirection: Axis.vertical,
-                              effect: ExpandingDotsEffect(
-                                  dotColor: Colors.grey.shade300,
-                                  activeDotColor: Colors.grey.shade500,
-                                  dotHeight: 10.0)),
+                            controller: _controller,
+                            count: 3,
+                            axisDirection: Axis.vertical,
+                            effect: ExpandingDotsEffect(
+                              dotColor: Colors.grey.shade400,
+                              activeDotColor: Theme.of(context).accentColor,
+                              dotHeight: 10.0,
+                            ),
+                          ),
                         ),
                       ),
                       Container(

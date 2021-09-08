@@ -54,16 +54,38 @@ class CustomTheme {
         ),
         elevation: 0,
       ),
+      backgroundColor: Colors.grey,
+      accentColor: Colors.grey[600],
+      inputDecorationTheme: InputDecorationTheme(
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        hintStyle: TextStyle(color: Colors.black),
+      ),
+      brightness: Brightness.light,
     );
   }
 
   static ThemeData getDarkTheme(BuildContext context) {
     return getLightTheme(context).copyWith(
-        primaryColor: Colors.grey[900],
-        cardColor: Color(0xFF303030),
-        iconTheme: IconThemeData(color: Colors.white),
-        textTheme: getLightTheme(context)
-            .textTheme
-            .apply(displayColor: Colors.white, bodyColor: Colors.white70));
+      primaryColor: Colors.grey[900],
+      accentColor: Colors.white,
+      cardColor: Color(0xFF303030),
+      iconTheme: IconThemeData(color: Colors.white),
+      inputDecorationTheme:
+          getLightTheme(context).inputDecorationTheme.copyWith(
+                fillColor: Colors.white24,
+                filled: true,
+                hintStyle: TextStyle(color: Colors.white70),
+              ),
+      backgroundColor: Colors.grey,
+      textTheme: getLightTheme(context)
+          .textTheme
+          .apply(displayColor: Colors.white, bodyColor: Colors.white70),
+      brightness: Brightness.dark,
+    );
   }
 }

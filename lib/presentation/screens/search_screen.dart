@@ -25,26 +25,20 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 20,
-            ),
-            TextField(
-              controller: _controller,
-              autofocus: true,
-              autocorrect: true,
-              decoration: InputDecoration(
-                hintText: "Enter city name",
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-              ),
-            ),
-          ],
-        ),
+    return SafeArea(
+      child: Column(
+        children: [
+          SizedBox(
+            height: 20,
+          ),
+          TextField(
+            controller: _controller,
+            autofocus: true,
+            autocorrect: true,
+            decoration: InputDecoration(hintText: "Enter city name")
+                .applyDefaults(Theme.of(context).inputDecorationTheme),
+          ),
+        ],
       ),
     );
   }

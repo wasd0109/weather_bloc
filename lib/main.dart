@@ -33,34 +33,8 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         home: HomeScreen(),
         theme: CustomTheme.getLightTheme(context),
-        darkTheme: CustomTheme.getDarkTheme(
-          context,
-        ),
+        darkTheme: CustomTheme.getDarkTheme(context),
       ),
     );
   }
 }
-// textTheme: GoogleFonts.latoTextTheme(
-//             Theme.of(context).textTheme,
-//           ).copyWith(
-//             bodyText2: TextStyle(color: Colors.white),
-//             bodyText1: TextStyle(color: Colors.white70),
-//             headline1: TextStyle(
-//                 fontWeight: FontWeight.w600,
-//                 fontSize: 30,
-//                 letterSpacing: -0.5,
-//                 color: Colors.white),
-//             headline2: TextStyle(
-//               fontSize: 25,
-//               fontWeight: FontWeight.w600,
-//               color: Colors.white,
-//             ),
-//           ),
-//           iconTheme: IconThemeData(color: Colors.white),
-//           primaryColor: Colors.grey[900],
-//           cardColor: Color(0xFF303030),
-//           cardTheme: CardTheme(
-//             shape: RoundedRectangleBorder(
-//               borderRadius: BorderRadius.circular(30),
-//             ),
-//           ),
