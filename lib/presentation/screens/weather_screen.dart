@@ -62,13 +62,13 @@ class WeatherScreen extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 50,
           ),
           CurrentWeatherTile(
             currentWeather: currentWeather,
           ),
           SizedBox(
-            height: 80,
+            height: 50,
           ),
           Expanded(
             child: Card(
