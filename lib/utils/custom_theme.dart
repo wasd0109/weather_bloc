@@ -42,12 +42,12 @@ class CustomTheme {
             ),
           )
           .apply(
-            bodyColor: Colors.grey[600],
+            bodyColor: Colors.grey[700],
             displayColor: Colors.black,
           ),
       iconTheme: IconThemeData(color: Colors.black),
       primaryColor: Colors.white,
-      cardColor: Colors.grey[200],
+      cardColor: Colors.grey[100],
       cardTheme: CardTheme(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),

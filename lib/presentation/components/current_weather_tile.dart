@@ -27,7 +27,7 @@ class CurrentWeatherTile extends StatelessWidget {
         ),
         Text(
           StringUtils.capitalize(currentWeather.description),
-          style: Theme.of(context).textTheme.subtitle1,
+          style: Theme.of(context).textTheme.subtitle1?.copyWith(fontSize: 25),
         ),
       ],
     );
