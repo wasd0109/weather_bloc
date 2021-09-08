@@ -28,7 +28,7 @@ class WeatherForecast extends Weather {
     final double temp = data["temp"]["min"].toDouble();
     final DateTime time =
         DateTime.fromMillisecondsSinceEpoch(data["dt"] * 1000);
-    final String icon = data["weather"][0]["icon"];
+    final String icon = Weather.iconToData(data["weather"][0]["icon"]);
     final int pressure = data["pressure"];
 
     final int humidity = data["humidity"];

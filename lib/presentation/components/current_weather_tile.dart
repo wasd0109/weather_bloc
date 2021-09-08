@@ -17,9 +17,9 @@ class CurrentWeatherTile extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Image.asset(
-          "images/${currentWeather.icon}@4x.png",
-          height: 150,
+        Text(
+          currentWeather.icon,
+          style: Theme.of(context).textTheme.headline3?.copyWith(fontSize: 100),
         ),
         Text(
           "${Utils.doubleToStringForDisplay(currentWeather.temp)}°",

@@ -78,12 +78,10 @@ class _ForecastScreenState extends State<ForecastScreen> {
                                   SizedBox(
                                     width: 30,
                                   ),
-                                  CircleAvatar(
-                                    backgroundColor: Colors.grey,
-                                    child: Image.asset(
-                                      "images/${state.dailyWeather[i].icon}@4x.png",
-                                      width: 40,
-                                    ),
+                                  Text(
+                                    state.dailyWeather[i].icon,
+                                    style:
+                                        Theme.of(context).textTheme.headline1,
                                   ),
                                   SizedBox(
                                     width: 10,

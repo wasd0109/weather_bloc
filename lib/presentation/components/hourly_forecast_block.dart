@@ -42,14 +42,9 @@ class HourlyForecastBlock extends StatelessWidget {
                           .headline4
                           ?.copyWith(fontSize: 20),
                     ),
-                    Container(
-                      height: 60,
-                      child: CircleAvatar(
-                        backgroundColor: Colors.grey,
-                        child: Image.asset(
-                          "images/${state.hourlyWeather[i].icon}@4x.png",
-                        ),
-                      ),
+                    Text(
+                      state.hourlyWeather[i].icon,
+                      style: Theme.of(context).textTheme.headline3,
                     ),
                     Text(
                       "${Utils.doubleToStringForDisplay(state.hourlyWeather[i].temp)}°",
