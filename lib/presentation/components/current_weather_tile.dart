@@ -2,6 +2,7 @@ import 'package:bloc_weather/data/models/weather.dart';
 import 'package:bloc_weather/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:basic_utils/basic_utils.dart';
+import 'package:bloc_weather/utils/utils.dart';
 
 class CurrentWeatherTile extends StatelessWidget {
   final Weather currentWeather;
@@ -21,12 +22,12 @@ class CurrentWeatherTile extends StatelessWidget {
           height: 150,
         ),
         Text(
-          "${currentWeather.temp.toString()}°",
-          style: TextStyle(fontSize: 60),
+          "${Utils.doubleToStringForDisplay(currentWeather.temp)}°",
+          style: Theme.of(context).textTheme.headline3,
         ),
         Text(
           StringUtils.capitalize(currentWeather.description),
-          style: TextStyle(color: kSecondaryTextColor, fontSize: 25),
+          style: Theme.of(context).textTheme.subtitle1,
         ),
       ],
     );

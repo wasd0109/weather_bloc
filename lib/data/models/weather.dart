@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class Weather {
   String condition;
   String description;
