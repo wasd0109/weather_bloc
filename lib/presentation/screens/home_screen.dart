@@ -55,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).primaryColor,
       body: Stack(
         children: [
           MultiBlocListener(
@@ -92,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen>
                               axisDirection: Axis.vertical,
                               effect: ExpandingDotsEffect(
                                   dotColor: Colors.grey.shade300,
-                                  activeDotColor: Colors.grey.shade400,
+                                  activeDotColor: Colors.grey.shade500,
                                   dotHeight: 10.0)),
                         ),
                       ),
@@ -122,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen>
                     ],
                   );
                 if (state is WeatherError)
-                  return Text(state.errorMsg);
+                  return Center(child: Text(state.errorMsg));
                 else
                   return Text("Something went wrong");
               },

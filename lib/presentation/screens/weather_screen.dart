@@ -34,11 +34,7 @@ class WeatherScreen extends StatelessWidget {
                   children: [
                     Text(
                       "${state.placemark.locality}",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 30,
-                        letterSpacing: -0.5,
-                      ),
+                      style: Theme.of(context).textTheme.headline1,
                     ),
                     IconButton(
                         onPressed: () {
@@ -62,7 +58,7 @@ class WeatherScreen extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: Text(
               DateFormat("EEEEE, h a").format(currentWeather.time),
-              style: TextStyle(color: kSecondaryTextColor, fontSize: 20),
+              style: Theme.of(context).textTheme.subtitle1,
             ),
           ),
           SizedBox(
@@ -75,77 +71,75 @@ class WeatherScreen extends StatelessWidget {
             height: 80,
           ),
           Expanded(
-            child: Container(
-              padding: EdgeInsets.all(20),
-              decoration: kContainerStyle,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    "Today",
-                    style: kSubTitleStyle,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        children: [
-                          Text(
-                            "Pressure",
-                            style: TextStyle(
-                                fontSize: 20, color: kSecondaryTextColor),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text(
-                            "${currentWeather.pressure.toString()} hPa",
-                            style: TextStyle(fontSize: 25),
-                          )
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                            "Visibilty",
-                            style: TextStyle(
-                                fontSize: 20, color: kSecondaryTextColor),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text(
-                            "${Utils.doubleToStringForDisplay(currentWeather.visibilty)} km",
-                            style: TextStyle(fontSize: 25),
-                          )
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                            "Humidity",
-                            style: TextStyle(
-                                fontSize: 20, color: kSecondaryTextColor),
-                          ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Text(
-                            '${currentWeather.humidity}%',
-                            style: TextStyle(fontSize: 25),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  HourlyForecastBlock(),
-                ],
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      "Today",
+                      style: Theme.of(context).textTheme.headline2,
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: [
+                            Text(
+                              "Pressure",
+                              style: Theme.of(context).textTheme.subtitle1,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              "${currentWeather.pressure.toString()} hPa",
+                              style: Theme.of(context).textTheme.headline4,
+                            )
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              "Visibilty",
+                              style: Theme.of(context).textTheme.subtitle1,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              "${Utils.doubleToStringForDisplay(currentWeather.visibilty)} km",
+                              style: Theme.of(context).textTheme.headline4,
+                            )
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              "Humidity",
+                              style: Theme.of(context).textTheme.subtitle1,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              '${currentWeather.humidity}%',
+                              style: Theme.of(context).textTheme.headline4,
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    HourlyForecastBlock(),
+                  ],
+                ),
               ),
             ),
           ),

@@ -23,11 +23,11 @@ class CurrentWeatherTile extends StatelessWidget {
         ),
         Text(
           "${Utils.doubleToStringForDisplay(currentWeather.temp)}°",
-          style: TextStyle(fontSize: 60),
+          style: Theme.of(context).textTheme.headline3,
         ),
         Text(
           StringUtils.capitalize(currentWeather.description),
-          style: TextStyle(color: kSecondaryTextColor, fontSize: 25),
+          style: Theme.of(context).textTheme.subtitle1,
         ),
       ],
     );

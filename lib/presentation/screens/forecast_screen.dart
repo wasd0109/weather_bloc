@@ -15,8 +15,8 @@ class ForecastScreen extends StatefulWidget {
 class _ForecastScreenState extends State<ForecastScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(child: BlocBuilder<WeatherCubit, WeatherState>(
+    return SafeArea(
+      child: BlocBuilder<WeatherCubit, WeatherState>(
         builder: (context, state) {
           if (state is WeatherLoading) return PlatformSpecificSpinner();
           if (state is WeatherLoaded)
@@ -25,7 +25,7 @@ class _ForecastScreenState extends State<ForecastScreen> {
               children: [
                 Text(
                   "This Week",
-                  style: kSubTitleStyle,
+                  style: Theme.of(context).textTheme.headline2,
                 ),
                 SizedBox(height: 20),
                 Expanded(
@@ -40,14 +40,10 @@ class _ForecastScreenState extends State<ForecastScreen> {
                             Expanded(
                               flex: 1,
                               child: Text(
-                                DateFormat.E()
-                                    .format(state.dailyWeather[i].time)
-                                    .toUpperCase(),
-                                style: TextStyle(
-                                  color: kSecondaryTextColor,
-                                  fontSize: 16,
-                                ),
-                              ),
+                                  DateFormat.E()
+                                      .format(state.dailyWeather[i].time)
+                                      .toUpperCase(),
+                                  style: Theme.of(context).textTheme.bodyText1),
                             ),
                             Expanded(
                               flex: 1,
@@ -57,17 +53,20 @@ class _ForecastScreenState extends State<ForecastScreen> {
                                 children: [
                                   Text(
                                     "${state.dailyWeather[i].maxTemp.toStringAsFixed(1)}°",
-                                    style: TextStyle(fontSize: 18),
+                                    style:
+                                        Theme.of(context).textTheme.headline4,
                                   ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              child: Row(
+                                children: [
                                   Text(
-                                    "${state.dailyWeather[i].temp.toStringAsFixed(1)}°",
-                                    style: TextStyle(
-                                        color: kSecondaryTextColor,
-                                        fontSize: 16),
-                                  ),
+                                      "${state.dailyWeather[i].temp.toStringAsFixed(1)}°",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1),
                                 ],
                               ),
                             ),
@@ -89,7 +88,11 @@ class _ForecastScreenState extends State<ForecastScreen> {
                                   SizedBox(
                                     width: 10,
                                   ),
-                                  Text(state.dailyWeather[i].condition),
+                                  Text(
+                                    state.dailyWeather[i].condition,
+                                    style:
+                                        Theme.of(context).textTheme.bodyText2,
+                                  ),
                                 ],
                               ),
                             ),
@@ -103,7 +106,7 @@ class _ForecastScreenState extends State<ForecastScreen> {
             );
           return Text("Error");
         },
-      )),
+      ),
     );
   }
 }
