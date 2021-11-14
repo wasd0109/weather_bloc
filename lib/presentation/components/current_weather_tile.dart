@@ -1,5 +1,4 @@
 import 'package:bloc_weather/data/models/weather.dart';
-import 'package:bloc_weather/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:basic_utils/basic_utils.dart';
 import 'package:bloc_weather/utils/utils.dart';

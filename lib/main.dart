@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:bloc_weather/cubit/locationautocomplete_cubit.dart';
 import 'package:bloc_weather/cubit/weather_cubit.dart';
 import 'package:bloc_weather/presentation/screens/home_screen.dart';
 import 'package:bloc_weather/utils/custom_theme.dart';
@@ -8,7 +9,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'cubit/location_cubit.dart';
 
@@ -35,6 +35,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => WeatherCubit(),
         ),
+        BlocProvider(
+          create: (context) => LocationAutocompleteCubit(),
+        )
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

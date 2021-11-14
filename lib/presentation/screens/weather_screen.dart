@@ -8,7 +8,6 @@ import 'package:intl/intl.dart';
 
 import 'package:bloc_weather/cubit/location_cubit.dart';
 import 'package:bloc_weather/presentation/components/current_weather_tile.dart';
-import 'package:bloc_weather/utils/constants.dart';
 
 class WeatherScreen extends StatelessWidget {
   final Weather currentWeather;

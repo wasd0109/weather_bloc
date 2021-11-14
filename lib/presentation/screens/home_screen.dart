@@ -1,4 +1,5 @@
 import 'package:bloc_weather/cubit/location_cubit.dart';
+import 'package:bloc_weather/cubit/locationautocomplete_cubit.dart';
 import 'package:bloc_weather/cubit/weather_cubit.dart';
 import 'package:bloc_weather/presentation/components/platform_specific_spinner.dart';
 import 'package:bloc_weather/presentation/screens/forecast_screen.dart';
@@ -68,6 +69,15 @@ class _HomeScreenState extends State<HomeScreen>
                   }
                 },
               ),
+              BlocListener<WeatherCubit, WeatherState>(
+                listener: (context, state) {
+                  if (state is WeatherLoaded) {
+                    BlocProvider.of<LocationAutocompleteCubit>(context)
+                        .resetSuggestion();
+                    _controller.jumpToPage(_controller.initialPage);
+                  }
+                },
+              ),
             ],
             child: BlocBuilder<WeatherCubit, WeatherState>(
               builder: (context, state) {
@@ -105,10 +115,14 @@ class _HomeScreenState extends State<HomeScreen>
                         child: SafeArea(
                           child: PageView(
                             onPageChanged: (index) {
-                              if (index == 1)
+                              if (index == 1) {
                                 WidgetsBinding
                                     .instance?.focusManager.primaryFocus
                                     ?.unfocus();
+                                BlocProvider.of<LocationAutocompleteCubit>(
+                                        context)
+                                    .resetSuggestion();
+                              }
                             },
                             scrollDirection: Axis.vertical,
                             controller: _controller,

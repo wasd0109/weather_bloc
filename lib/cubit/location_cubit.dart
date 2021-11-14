@@ -34,4 +34,33 @@ class LocationCubit extends Cubit<LocationState> {
       emit(LocationError("Something went wrong when acquiring location"));
     }
   }
+
+  void getLocationFromCity(String city) async {
+    emit(LocationLoading());
+    try {
+      List<Location> locations =
+          await geocoding.locationFromAddress(city, localeIdentifier: "en_US");
+      List<Placemark> placemarks = await geocoding.placemarkFromCoordinates(
+          locations[0].latitude, locations[0].longitude,
+          localeIdentifier: "en_US");
+      emit(
+        LocationLoaded(
+          Position(
+            latitude: locations[0].latitude,
+            longitude: locations[0].longitude,
+            timestamp: locations[0].timestamp,
+            speed: 0.0,
+            speedAccuracy: 0.0,
+            accuracy: 0.0,
+            altitude: 0.0,
+            heading: 0.0,
+            floor: 0,
+          ),
+          placemarks[0],
+        ),
+      );
+    } catch (err) {
+      emit(LocationError("Something went wrong when acquiring location"));
+    }
+  }
 }

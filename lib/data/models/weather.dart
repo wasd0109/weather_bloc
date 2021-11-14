@@ -7,6 +7,7 @@ class Weather {
   int pressure;
   int humidity;
   double? visibilty;
+  int chanceOfRain;
 
   Weather(
       {required this.condition,
@@ -16,7 +17,8 @@ class Weather {
       required this.icon,
       required this.pressure,
       required this.humidity,
-      this.visibilty});
+      this.visibilty,
+      required this.chanceOfRain});
 
   static Weather fromJSON(Map<String, dynamic> data) {
     final String condition = data["weather"][0]["main"];
@@ -28,6 +30,8 @@ class Weather {
     final int pressure = data["pressure"];
     final int humidity = data["humidity"];
     final double visibilty = data["visibility"] / 1000;
+    final int chanceOfRain =
+        data["pop"] == null ? -1 : (data["pop"] * 100).toInt();
     return Weather(
         condition: condition,
         description: description,
@@ -36,13 +40,12 @@ class Weather {
         icon: icon,
         pressure: pressure,
         humidity: humidity,
-        visibilty: visibilty);
+        visibilty: visibilty,
+        chanceOfRain: chanceOfRain);
   }
 
   static String iconToData(String icon) {
     final iconEnum = OpenWeatherMapIcon.values.firstWhere((e) {
-      print(e);
-      print("icon$icon");
       return e.toString() == "OpenWeatherMapIcon.icon$icon";
     });
     switch (iconEnum) {

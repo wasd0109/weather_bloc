@@ -4,23 +4,25 @@ class WeatherForecast extends Weather {
   // temp from Weather used as minTemp
   double maxTemp;
 
-  WeatherForecast({
-    required this.maxTemp,
-    required condition,
-    required description,
-    required pressure,
-    required humidity,
-    required icon,
-    required temp,
-    required time,
-  }) : super(
+  WeatherForecast(
+      {required this.maxTemp,
+      required condition,
+      required description,
+      required pressure,
+      required humidity,
+      required icon,
+      required temp,
+      required time,
+      required chanceOfRain})
+      : super(
             condition: condition,
             description: description,
             icon: icon,
             temp: temp,
             time: time,
             humidity: humidity,
-            pressure: pressure);
+            pressure: pressure,
+            chanceOfRain: chanceOfRain);
 
   static WeatherForecast fromJSON(Map<String, dynamic> data) {
     final String condition = data["weather"][0]["main"];
@@ -33,6 +35,8 @@ class WeatherForecast extends Weather {
 
     final int humidity = data["humidity"];
     final double maxTemp = data["temp"]["max"].toDouble();
+    final int chanceOfRain =
+        data["pop"] == null ? -1 : (data["pop"] * 100).toInt();
 
     return WeatherForecast(
       maxTemp: maxTemp,
@@ -43,6 +47,7 @@ class WeatherForecast extends Weather {
       pressure: pressure,
       temp: temp,
       time: time,
+      chanceOfRain: chanceOfRain,
     );
   }
 }
